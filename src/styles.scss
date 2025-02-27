@@ -1,12 +1,12 @@
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
 
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@use 'ngx-toastr/toastr';
 
 body{
     max-width: 100%;
