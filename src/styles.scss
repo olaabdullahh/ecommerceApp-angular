@@ -4,9 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@import 'ngx-toastr/toastr';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@use 'ngx-toastr/toastr';
 
 body{
     max-width: 100%;
