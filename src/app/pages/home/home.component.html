@@ -1,0 +1,143 @@
+<section class="mt-[100px] w-full md:w-[70%] mx-auto">
+  <div class="w-full grid grid-cols-1 md:grid-cols-[60%_minmax(0,1fr)]">
+    <div>
+      <owl-carousel-o [options]="silderStatic">
+        <ng-template carouselSlide>
+          <img
+            src="/images/slider1 (2).jpg"
+            class="h-[400px] object-contain"
+            alt="slider2"
+            title="slider2"
+          />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="/images/slider1 (3).jpg "
+            class="w-full h-[400px]"
+            alt="slider3"
+            title="slider3"
+          />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="/images/slider1 (5).jpg"
+            class="w-full h-[400px] object-contain"
+            alt="slider5"
+            title="slider5"
+          />
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+    <div>
+      <img
+        src="/images/slider1 (1).jpg"
+        class="md:block w-full md:h-[200px]"
+        alt="slider1"
+        title="slider1"
+      />
+      <img
+        src="/images/slider1 (4).jpg"
+        class="md:block w-full md:h-[200px]"
+        alt="grocery"
+        title="grocery"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="my-10">
+  <div>
+    <owl-carousel-o [options]="customOptions">
+      @for (category of AllCategories; track $index) {
+      <ng-template carouselSlide>
+        <img
+          class="w-full h-[250px]"
+          [src]="category.image"
+          [alt]="category.name"
+          [title]="category.name"
+        />
+        <h3>{{ category.name }}</h3>
+      </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+
+<section class="py-10">
+  <div>
+    <div class="my-6 mx-auto w-[50%]">
+      <input
+        [(ngModel)]="name"
+        type="text"
+        id="default-input"
+        placeholder="search"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+    <div
+      class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10"
+    >
+      @for (product of allProducts.slice(0, 20) | search :name; track
+      product.id) {
+      <div
+        class="card border border-green-400 shadow-lg hover:shadow-green-400 relative overflow-hidden bg-white rounded-md dark:bg-gray-800 dark:border-gray-700"
+      >
+        <div [routerLink]="['/details', product.id]">
+          <div class="card-img">
+            <img
+              class="w-full h-[350px] object-contain"
+              [src]="product.imageCover"
+              alt="{{ product.title }}"
+            />
+          </div>
+          <div class="card-body px-2 py-4">
+            <h4 class="text-green-500 text-xs tracking-tight dark:text-white">
+              {{ product.category.name }}
+            </h4>
+            <h2 class="font-medium text-gray-700 dark:text-gray-400">
+              {{ product.title.split(" ", 2).join(" ") }}
+            </h2>
+            <div
+              class="body-footer flex justify-between items-center text-gray-500"
+            >
+              <span class="text-light">{{ product.price }}EGP</span>
+              <div class="flex items-center">
+                @for (num of [1,2,3,4,5].slice(0, product.ratingsAverage); track
+                $index) {
+                <i class="fas fa-star text-yellow-300"></i>
+                } @if(product.ratingsAverage % 1 !== 0 ){
+                <i
+                  class="fa-solid fa-star-half-stroke rating-color text-yellow-300"
+                ></i>
+                }
+                <span>{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex">
+          <button
+            (click)="addToCart(product.id)"
+            class="bg-green-600 text-white py-2 px-10 block mx-auto rounded w-[70%]"
+          >
+            + Add
+          </button>
+          <a
+            class="cursor-pointer text-lg pe-4"
+            (click)="addToWishList(product.id)"
+          >
+            <i
+              class="fa-solid fa-heart text-lg"
+              [class]="{
+                'text-red-500': isInWishList(product.id),
+                'text-gray-500': !isInWishList(product.id)
+              }"
+            ></i>
+          </a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

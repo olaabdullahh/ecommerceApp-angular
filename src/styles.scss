@@ -1,0 +1,20 @@
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
+
+body{
+    max-width: 100%;
+  overflow-x: hidden;
+}
+.btn-main{
+  @apply bg-green-600 px-8 py-2 rounded text-white hover:bg-green-800 transition-colors delay-100
+}
+.btn-pay{
+@apply   px-8 py-2 border border-[#09c] rounded text-[#09c] w-full block
+}

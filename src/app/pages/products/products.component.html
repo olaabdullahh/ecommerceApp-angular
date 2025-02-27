@@ -1,0 +1,81 @@
+<section class="py-10 mt-[100px]">
+  <div>
+    <div class="my-6 mx-auto w-[50%]">
+      <input
+        [(ngModel)]="name"
+        type="text"
+        id="default-input"
+        placeholder="search"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+    <div
+      class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10"
+    >
+      @for (product of allProducts | search :name; track product.id) {
+      <div
+        class="card border border-green-400 shadow-lg hover:shadow-green-400 relative overflow-hidden bg-white rounded-md dark:bg-gray-800 dark:border-gray-700"
+      >
+        <div [routerLink]="['/details', product.id]">
+          <div class="card-img">
+            <img
+              class="w-full h-[350px] object-contain"
+              [src]="product.imageCover"
+              alt="{{ product.title }}"
+            />
+          </div>
+          <div class="card-body px-2 py-4">
+            <h4 class="text-green-500 text-xs tracking-tight dark:text-white">
+              {{ product.category.name }}
+            </h4>
+            <h2 class="font-medium text-gray-700 dark:text-gray-400">
+              {{ product.title.split(" ", 2).join(" ") }}
+            </h2>
+            <div
+              class="body-footer flex justify-between items-center text-gray-500"
+            >
+              <span class="text-light">{{ product.price }}EGP</span>
+              <div class="flex items-center">
+                @for (num of [1,2,3,4,5].slice(0, product.ratingsAverage); track
+                $index) {
+                <i class="fas fa-star text-yellow-300"></i>
+                } @if(product.ratingsAverage % 1 !== 0 ){
+                <i
+                  class="fa-solid fa-star-half-stroke rating-color text-yellow-300"
+                ></i>
+                }
+                <span>{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex">
+          <button
+            (click)="addToCart(product.id)"
+            class="bg-green-600 text-white py-2 px-10 block mx-auto rounded w-[70%]"
+          >
+            + Add
+          </button>
+
+          <!-- <a class="cursor-pointer text-lg pe-4">
+            <i class="fa-solid fa-heart text-lg"></i>
+          </a> -->
+          <a
+            class="cursor-pointer text-lg pe-4"
+            (click)="addToWishList(product.id)"
+          >
+            <i
+              class="fa-solid fa-heart text-lg"
+              [class]="{
+                'text-red-500': isInWishList(product.id),
+                'text-gray-500': !isInWishList(product.id)
+              }"
+            ></i>
+          </a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

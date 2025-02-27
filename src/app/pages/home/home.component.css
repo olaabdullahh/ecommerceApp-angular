@@ -1,0 +1,9 @@
+.card button {
+  transform: translateY(100%);
+  transition: all 0.5s;
+  opacity: 0;
+}
+.card:hover button {
+  transform: translateY(0);
+  opacity: 1;
+}/*# sourceMappingURL=home.component.css.map */

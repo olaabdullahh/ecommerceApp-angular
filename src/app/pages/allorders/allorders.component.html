@@ -1,0 +1,33 @@
+<section class="w-[70%] mx-auto bg-gray-50 p-10 rounded-sm my-10">
+  <div class="head-cart flex justify-between items-center">
+    <h2 class="text-2xl fw-bold">My Orders</h2>
+  </div>
+
+  <div>
+    @for (product of arrayAllProduct; track $index){
+    <h3 class="text-lg text-green-600">
+      OrderDate:
+      <span class="text-black">{{ product.createdAt | date }}</span>
+    </h3>
+    @for (item of product.cartItems; track $index) {
+    <div
+      class="bg-white grid grid-cols-1 md:grid-cols-[20%_minmax(0,1fr)] border-b border-green-600 pb-4 my-4"
+    >
+      <div class="img">
+        <img
+          class="w-full h-[100px] object-contain"
+          [src]="item.product.imageCover"
+          [alt]="item.product.title"
+        />
+      </div>
+      <div class="info flex justify-between items-center">
+        <div>
+          <h3>title{{ item.product.title }}</h3>
+          <h4>Price{{ item.price | currency : "EGP" }}</h4>
+          <h5>Count{{ item.count }}</h5>
+        </div>
+      </div>
+    </div>
+    } }
+  </div>
+</section>

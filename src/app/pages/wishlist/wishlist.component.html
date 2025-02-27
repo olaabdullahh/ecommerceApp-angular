@@ -1,0 +1,39 @@
+<section class="w-[70%] mx-auto bg-gray-50 p-10 rounded-sm my-[140px]">
+  <div class="head-cart flex justify-between items-center">
+    <h2 class="text-2xl fw-bold">My Wish List</h2>
+  </div>
+
+  @for (item of myWishList; track $index) {
+  <div
+    class="grid grid-cols-1 md:grid-cols-[20%_minmax(0,1fr)] border-b pb-4 mt-4"
+  >
+    <div class="img">
+      <img
+        class="w-full h-[100px] object-contain"
+        height=""
+        [src]="item.imageCover"
+        [alt]="item.title"
+      />
+    </div>
+    <div class="info flex justify-between items-center">
+      <div>
+        <h3>{{ item.title }}</h3>
+        <h4 class="text-green-600">
+          {{ item.price | currency : "EGP" }}
+        </h4>
+        <button (click)="removeProduct(item.id)" class="text-red-600">
+          <i class="fas fa-trash-can text-red-600"></i> Remove
+        </button>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          (click)="addToCart(item.id)"
+          class="px-6 py-3 border border-green-600 rounded mx-auto mt-6 text-xl block"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</section>

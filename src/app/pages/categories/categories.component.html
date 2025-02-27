@@ -1,0 +1,44 @@
+<section class="w-[80%] mx-auto rounded-lg my-[100px]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    @for (category of categoryData; track category._id) {
+    <div
+      (click)="getsubcategory(category._id)"
+      class="max-w-sm hover:shadow-green-400 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-500 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <img
+        class="rounded-t-lg h-[300px] w-full"
+        [src]="category.image"
+        [alt]="category.name"
+      />
+
+      <div class="p-5">
+        <h2
+          class="mb-2 text-2xl text-green-600 text-center capitalize font-medium tracking-tight dark:text-white"
+        >
+          {{ category.name }}
+        </h2>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+<!-- <section>
+  <div>
+    <h2 class="my-4 text-3xl text-green-600 text-center capitalize font-medium">
+      Women's Fashion subcategories
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div
+        class="max-w-sm hover:shadow-green-400 gap-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-500 dark:bg-gray-800 dark:border-gray-700"
+      >
+        <div class="p-5">
+          <h2
+            class="mb-2 text-2xl text-center capitalize font-medium tracking-tight dark:text-white"
+          >
+            name
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

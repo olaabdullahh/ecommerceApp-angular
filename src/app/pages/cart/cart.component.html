@@ -1,0 +1,68 @@
+<section class="w-[70%] mx-auto bg-gray-50 p-10 rounded-sm my-[140px]">
+  <div class="head-cart flex justify-between items-center">
+    <h2 class="text-3xl">Shop Cart</h2>
+    <button [routerLink]="['/checkout', cartDetails._id]" class="btn-main">
+      Check Out
+    </button>
+  </div>
+  <div class="head-cart flex justify-between items-center">
+    <p class="text-lg fw-bold">
+      Total price:
+      <span class="text-green-600">{{
+        cartDetails.totalCartPrice | currency : "EGP"
+      }}</span>
+    </p>
+    <p class="text-lg py-5">
+      total number of items:
+      <span class="text-green-600">{{ cartNumber }}</span>
+    </p>
+  </div>
+  @for (product of cartDetails.products; track product.product.id){
+  <div
+    class="grid grid-cols-1 md:grid-cols-[20%_minmax(0,1fr)] border-b pb-4 mt-4"
+  >
+    <div class="img">
+      <img
+        class="w-full h-[100px] object-contain"
+        height=""
+        [src]="product.product.imageCover"
+        [alt]="product.product.title"
+      />
+    </div>
+    <div class="info flex justify-between items-center">
+      <div>
+        <h3>{{ product.product.title }}</h3>
+        <h4>{{ product.price | currency : "EGP" }}</h4>
+        <button
+          class="text-red-600"
+          (click)="deleteCartItem(product.product.id)"
+        >
+          <i class="fas fa-trash-can text-red-600"></i> Remove
+        </button>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          (click)="updateCount(product.product.id, product.count + 1)"
+          class="border border-green-600 rounded-sm px-2"
+        >
+          +
+        </button>
+        <span> {{ product.count }}</span>
+        <button
+          (click)="updateCount(product.product.id, product.count - 1)"
+          class="border border-green-600 rounded-sm px-2"
+        >
+          -
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+
+  <button
+    (click)="clearCart()"
+    class="px-6 py-3 border border-green-600 rounded mx-auto mt-6 text-xl block"
+  >
+    Clear Your Cart
+  </button>
+</section>
