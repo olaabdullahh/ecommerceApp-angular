@@ -42,7 +42,7 @@ ngOnInit(): void {
  
   this.activatedRoute.paramMap.subscribe({
     next:(p)=>{
-let idProduct = p.get("id")!
+const idProduct = p.get("id") !
       console.log(p.get("id"));
       this.productsService.getSpecificProduct( idProduct).subscribe({
         next:(res)=>{

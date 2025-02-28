@@ -29,8 +29,11 @@ export const routes: Routes = [
       { path: 'checkout/:idCart', loadComponent: () => import('./pages/checkout/checkout.component').then(m => m.CheckoutComponent), title: 'Checkout' },
       { path: 'categories', loadComponent: () => import('./pages/categories/categories.component').then(m => m.CategoriesComponent), title: 'Categories' },
       { path: 'allorders', loadComponent: () => import('./pages/allorders/allorders.component').then(m => m.AllordersComponent), title: 'allorders' },
-      { path: 'details/:id', loadComponent: () => import('./pages/details/details.component').then(m => m.DetailsComponent), title: 'details' },
-      { path: 'wishlist', loadComponent: () => import('./pages/wishlist/wishlist.component').then(m => m.WishlistComponent), title: 'wishlist' },
+      { 
+        path: 'details/:id', 
+        loadComponent: () => import('./pages/details/details.component').then(m => m.DetailsComponent), 
+        title: 'details'
+      },      { path: 'wishlist', loadComponent: () => import('./pages/wishlist/wishlist.component').then(m => m.WishlistComponent), title: 'wishlist' },
     ],
   },
   { path: '**', component: NotfoundComponent, title: 'Not Found' },
